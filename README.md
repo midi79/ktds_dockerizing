@@ -11,3 +11,5 @@
 9. Nginx 1.22 + Node.js 20 (Vue)
 10. Nginx 1.22 + Django 4.1.9, gunicorn 21.2.0 (Python 3.10.4, React 18)
 11. Nginx 1.22 + gunicorn 23.0.0 (Python 3.9)
+
+( SpingBoot 3.3.10 -> JDK 17 )
