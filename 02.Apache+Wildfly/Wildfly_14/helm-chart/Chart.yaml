@@ -1,0 +1,6 @@
+apiVersion: v2
+name: apache-wildfly-app
+description: A Helm chart for Apache and WildFly deployment
+type: application
+version: 0.1.0
+appVersion: "1.0.0"

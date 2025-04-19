@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-apache
+  labels:
+    app: {{ .Release.Name }}-apache
+spec:
+  replicas: {{ .Values.apache.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-apache
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-apache
+    spec:
+      containers:
+      - name: apache
+        image: "{{ .Values.apache.image.repository }}:{{ .Values.apache.image.tag }}"
+        imagePullPolicy: {{ .Values.apache.image.pullPolicy }}
+        ports:
+        - containerPort: 80
+        resources:
+          {{- toYaml .Values.apache.resources | nindent 12 }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5

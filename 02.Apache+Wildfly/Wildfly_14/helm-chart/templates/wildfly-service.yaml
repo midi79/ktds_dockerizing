@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-wildfly
+  labels:
+    app: {{ .Release.Name }}-wildfly
+spec:
+  type: {{ .Values.wildfly.service.type }}
+  ports:
+  - port: {{ .Values.wildfly.service.port }}
+    targetPort: 8080
+    protocol: TCP
+    name: http
+  - port: 9990
+    targetPort: 9990
+    protocol: TCP
+    name: management
+  selector:
+    app: {{ .Release.Name }}-wildfly

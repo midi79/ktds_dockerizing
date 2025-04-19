@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-apache
+  labels:
+    app: {{ .Release.Name }}-apache
+spec:
+  type: {{ .Values.apache.service.type }}
+  ports:
+  - port: {{ .Values.apache.service.port }}
+    targetPort: 80
+    protocol: TCP
+    name: http
+  selector:
+    app: {{ .Release.Name }}-apache
